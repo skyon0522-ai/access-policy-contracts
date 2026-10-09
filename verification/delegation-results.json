@@ -1,0 +1,30 @@
+[
+  {
+    "name": "copied-main-review",
+    "test": "test_customer_review_delegates$",
+    "mutation": {
+      "to": "input.role == \"blocked-customer\"",
+      "from": "input.role == \"customer\""
+    },
+    "expected_failure_exit_code": 2,
+    "restored_pass_exit_code": 0,
+    "sha256_original": "f01c770e162f478d190635c92c5c70fab6c05f397c98f9e96883593939fed94b",
+    "sha256_mutated": "f51c3e48f0d34b602ddca7ea52a88d096e9aca5ee8a4301430b01798d941593c",
+    "sha256_restored": "f01c770e162f478d190635c92c5c70fab6c05f397c98f9e96883593939fed94b",
+    "restored_byte_identical": true
+  },
+  {
+    "name": "copied-role-delete",
+    "test": "test_high_reputation_delete_delegates$",
+    "mutation": {
+      "to": "input.reputation >= 1000",
+      "from": "input.reputation >= 100"
+    },
+    "expected_failure_exit_code": 2,
+    "restored_pass_exit_code": 0,
+    "sha256_original": "fc3fb33fdf39038ed1153e5b5a9fb7e2c9dd2c41a7b5512959a35bac5b25211c",
+    "sha256_mutated": "496b9683ac9da2d1354dae23a295013fb67fdb9b518887a4713a39d8a6baa083",
+    "sha256_restored": "fc3fb33fdf39038ed1153e5b5a9fb7e2c9dd2c41a7b5512959a35bac5b25211c",
+    "restored_byte_identical": true
+  }
+]

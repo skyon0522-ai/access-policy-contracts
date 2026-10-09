@@ -1,0 +1,488 @@
+[
+  {
+    "case": "input1-review",
+    "request": {
+      "subject": {
+        "role": "customer",
+        "reputation": 10,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "review"
+    },
+    "expected": true,
+    "actual": true,
+    "exit_code": 0
+  },
+  {
+    "case": "input1-delete",
+    "request": {
+      "subject": {
+        "role": "customer",
+        "reputation": 10,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "input2-review",
+    "request": {
+      "subject": {
+        "role": "customer",
+        "reputation": -10,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "input2-delete",
+    "request": {
+      "subject": {
+        "role": "customer",
+        "reputation": -10,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "input3-review",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": 100,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "input3-delete",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": 100,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "delete"
+    },
+    "expected": true,
+    "actual": true,
+    "exit_code": 0
+  },
+  {
+    "case": "input4-review",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": 100,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "input4-delete",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": 100,
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "delete"
+    },
+    "expected": true,
+    "actual": true,
+    "exit_code": 0
+  },
+  {
+    "case": "input5-review",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "input5-delete",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": "tenant-a"
+      },
+      "resource": {
+        "tenant": "tenant-a"
+      },
+      "action": "delete"
+    },
+    "expected": true,
+    "actual": true,
+    "exit_code": 0
+  },
+  {
+    "case": "admin-malformed-present-reputation",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "reputation": null,
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "array-input",
+    "request": [],
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "both-tenants-missing",
+    "request": {
+      "subject": {
+        "role": "admin"
+      },
+      "resource": {},
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "cross-tenant-admin-delete",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": "b"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "cross-tenant-reputation-delete",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": 100,
+        "tenant": "b"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "equal-empty-tenants",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": ""
+      },
+      "resource": {
+        "tenant": ""
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "equal-numeric-tenants",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": 1
+      },
+      "resource": {
+        "tenant": 1
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "equal-whitespace-tenants",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": " "
+      },
+      "resource": {
+        "tenant": " "
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "guest-review",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": 100,
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "low-reputation-delete",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": 99,
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "missing-action",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      }
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "missing-nonadmin-delete-reputation",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "missing-resource-tenant",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": "a"
+      },
+      "resource": {},
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "missing-review-reputation",
+    "request": {
+      "subject": {
+        "role": "customer",
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "missing-role",
+    "request": {
+      "subject": {
+        "reputation": 100,
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "missing-subject-tenant",
+    "request": {
+      "subject": {
+        "role": "admin"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "negative-customer-review",
+    "request": {
+      "subject": {
+        "role": "customer",
+        "reputation": -10,
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "null-input",
+    "request": null,
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "string-reputation-delete",
+    "request": {
+      "subject": {
+        "role": "guest",
+        "reputation": "100",
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "delete"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "string-reputation-review",
+    "request": {
+      "subject": {
+        "role": "customer",
+        "reputation": "100",
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "review"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  },
+  {
+    "case": "unknown-action",
+    "request": {
+      "subject": {
+        "role": "admin",
+        "tenant": "a"
+      },
+      "resource": {
+        "tenant": "a"
+      },
+      "action": "write"
+    },
+    "expected": false,
+    "actual": false,
+    "exit_code": 0
+  }
+]

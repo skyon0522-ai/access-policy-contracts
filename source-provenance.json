@@ -1,0 +1,86 @@
+{
+  "schema": "source-duplicated-component-v1",
+  "repository": "open-policy-agent/contrib",
+  "commit": "5b21e4cb42b8b3893a3ade1cf33423336c6176e1",
+  "chosen_subtree": "academy-samples/opa-by-example/review_authz_example",
+  "whole_subtree_file_count": 8,
+  "license_files": [
+    "LICENSE",
+    "academy-samples/LICENSE"
+  ],
+  "notice_files_in_returned_upstream_tree": [],
+  "source_modifications": "None; whole chosen subtree byte-identical. Added contract/tests are separate.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "git_blob_sha1": "8dada3edaf50dbc082c9a125058f25def75e625a",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/LICENSE"
+    },
+    {
+      "path": "academy-samples/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/LICENSE"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/inputs/input1.json",
+      "bytes": 45,
+      "sha256": "ccef3d500e7366598685e60a64a4f007282fa57f6982fd993c7973d8e5ad418e",
+      "git_blob_sha1": "9d1380b15af858ad4869a64b6140b0aef0d867b7",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/inputs/input1.json"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/inputs/input2.json",
+      "bytes": 46,
+      "sha256": "71fd25aa7039ced2438c03df4f033fccd4f2e5f3cf6da304d80342cb1474c373",
+      "git_blob_sha1": "1162fb8a1e28c99683c3c528d2329e692971eb6b",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/inputs/input2.json"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/inputs/input3.json",
+      "bytes": 43,
+      "sha256": "822fd44c6938727279a04e19797522dce1cde57db0d46a79b1520161d1d0bfb5",
+      "git_blob_sha1": "1a78abc310df76ebd953bd1b27475bafd1fbd2b8",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/inputs/input3.json"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/inputs/input4.json",
+      "bytes": 43,
+      "sha256": "822fd44c6938727279a04e19797522dce1cde57db0d46a79b1520161d1d0bfb5",
+      "git_blob_sha1": "1a78abc310df76ebd953bd1b27475bafd1fbd2b8",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/inputs/input4.json"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/inputs/input5.json",
+      "bytes": 22,
+      "sha256": "21684d7249784d217ff492887229af20894f91d7be81a4e5f57d32efc3bbb6e6",
+      "git_blob_sha1": "db53ff29197878979c55c7b5925df403b6fee38c",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/inputs/input5.json"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/rules_and_data/main/rules.rego",
+      "bytes": 427,
+      "sha256": "f01c770e162f478d190635c92c5c70fab6c05f397c98f9e96883593939fed94b",
+      "git_blob_sha1": "09a05cdcb5b72fbcb50ddf94ebf9361b2a70fe9f",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/rules_and_data/main/rules.rego"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/rules_and_data/policy/role/rules.rego",
+      "bytes": 207,
+      "sha256": "fc3fb33fdf39038ed1153e5b5a9fb7e2c9dd2c41a7b5512959a35bac5b25211c",
+      "git_blob_sha1": "bd1886d2d98fb061e81bd41be0f7d77472bf111b",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/rules_and_data/policy/role/rules.rego"
+    },
+    {
+      "path": "academy-samples/opa-by-example/review_authz_example/rules_and_data/test/test.rego",
+      "bytes": 897,
+      "sha256": "f749b1c9cf73e73a413d4bf2e378ff70a436aba7d9adbb6987845894a01d9cc8",
+      "git_blob_sha1": "c4bbbf7be787f0b7d44b51aa8108df844413186d",
+      "source_url": "https://raw.githubusercontent.com/open-policy-agent/contrib/5b21e4cb42b8b3893a3ade1cf33423336c6176e1/academy-samples/opa-by-example/review_authz_example/rules_and_data/test/test.rego"
+    }
+  ],
+  "source_record_reference": "SOURCES.md"
+}

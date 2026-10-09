@@ -1,0 +1,98 @@
+[
+  {
+    "stage": "original",
+    "completed_utc": "2026-10-09T15:16:31.5253784Z",
+    "test_exit_code": 0,
+    "tests_passed": 6,
+    "fixture_decisions": [
+      {
+        "fixture": "input1",
+        "decision": [
+          true,
+          false
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input2",
+        "decision": [
+          false,
+          false
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input3",
+        "decision": [
+          false,
+          true
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input4",
+        "decision": [
+          false,
+          true
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input5",
+        "decision": [
+          false,
+          true
+        ],
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "stage": "unchanged-duplicate",
+    "completed_utc": "2026-10-09T15:16:31.9773787Z",
+    "test_exit_code": 0,
+    "tests_passed": 6,
+    "fixture_decisions": [
+      {
+        "fixture": "input1",
+        "decision": [
+          true,
+          false
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input2",
+        "decision": [
+          false,
+          false
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input3",
+        "decision": [
+          false,
+          true
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input4",
+        "decision": [
+          false,
+          true
+        ],
+        "exit_code": 0
+      },
+      {
+        "fixture": "input5",
+        "decision": [
+          false,
+          true
+        ],
+        "exit_code": 0
+      }
+    ]
+  }
+]

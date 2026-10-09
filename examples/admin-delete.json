@@ -1,0 +1,10 @@
+{
+  "subject": {
+    "role": "admin",
+    "tenant": "tenant-a"
+  },
+  "resource": {
+    "tenant": "tenant-a"
+  },
+  "action": "delete"
+}

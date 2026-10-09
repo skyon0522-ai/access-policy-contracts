@@ -1,0 +1,11 @@
+{
+  "subject": {
+    "role": "customer",
+    "reputation": 10,
+    "tenant": "tenant-a"
+  },
+  "resource": {
+    "tenant": "tenant-a"
+  },
+  "action": "review"
+}

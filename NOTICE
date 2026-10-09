@@ -1,0 +1,7 @@
+Access Policy Contracts contains unchanged source from open-policy-agent/contrib,
+commit 5b21e4cb42b8b3893a3ade1cf33423336c6176e1, under Apache-2.0.
+The complete chosen review_authz_example subtree is retained under components/contrib.
+Applicable original licenses remain at components/contrib/LICENSE and
+components/contrib/academy-samples/LICENSE. The selected subtree is unchanged.
+Separate contract and acceptance-test files were added for tenant/action validation.
+See source-provenance.json and SOURCES.md for exact file identities and attribution.
