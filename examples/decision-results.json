@@ -1,0 +1,40 @@
+{
+  "policy_query": "data.access_contract.allow",
+  "opa_version": "0.67.0",
+  "opa_sha256": "98ac401e944f6bc9bbc29a91f699b3403ec6979ed94682e46fa5ec78a8230bf3",
+  "test_summary": "51 passed, 0 failed",
+  "cases": [
+    {
+      "case": "same-tenant-review",
+      "label": "Customer review in the same tenant",
+      "input": "examples/same-tenant-review.json",
+      "input_json": "{\n  \"subject\": {\n    \"role\": \"customer\",\n    \"reputation\": 10,\n    \"tenant\": \"tenant-a\"\n  },\n  \"resource\": {\n    \"tenant\": \"tenant-a\"\n  },\n  \"action\": \"review\"\n}\n",
+      "decision": true,
+      "explanation": "The tenant gate passes and the customer-review rule accepts numeric reputation 10."
+    },
+    {
+      "case": "cross-tenant-admin-delete",
+      "label": "Admin delete across tenants",
+      "input": "examples/cross-tenant-admin-delete.json",
+      "input_json": "{\n  \"subject\": {\n    \"role\": \"admin\",\n    \"tenant\": \"b\"\n  },\n  \"resource\": {\n    \"tenant\": \"a\"\n  },\n  \"action\": \"delete\"\n}\n",
+      "decision": false,
+      "explanation": "The tenant gate rejects different subject and resource tenants before delegation."
+    },
+    {
+      "case": "admin-delete",
+      "label": "Admin delete without reputation",
+      "input": "examples/admin-delete.json",
+      "input_json": "{\n  \"subject\": {\n    \"role\": \"admin\",\n    \"tenant\": \"tenant-a\"\n  },\n  \"resource\": {\n    \"tenant\": \"tenant-a\"\n  },\n  \"action\": \"delete\"\n}\n",
+      "decision": true,
+      "explanation": "An omitted reputation is permitted for an admin; the role rule accepts admin."
+    },
+    {
+      "case": "admin-string-reputation",
+      "label": "Admin delete with string reputation",
+      "input": "examples/admin-string-reputation.json",
+      "input_json": "{\n  \"subject\": {\n    \"role\": \"admin\",\n    \"reputation\": \"100\",\n    \"tenant\": \"tenant-a\"\n  },\n  \"resource\": {\n    \"tenant\": \"tenant-a\"\n  },\n  \"action\": \"delete\"\n}\n",
+      "decision": false,
+      "explanation": "A supplied reputation must be numeric, even for an admin."
+    }
+  ]
+}

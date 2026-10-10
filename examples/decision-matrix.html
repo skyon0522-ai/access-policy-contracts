@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Access policy decision walkthrough</title>
+<style>
+body{font:16px/1.55 system-ui,sans-serif;max-width:74rem;margin:0 auto;padding:2rem 1rem;color:#17212b;background:#f7f9fc}
+main{background:white;padding:1.5rem;border:1px solid #d5deea;border-radius:.6rem;min-width:0}
+h1{line-height:1.2}p{max-width:75ch}table{border-collapse:collapse;width:100%;min-width:40rem}th,td{text-align:left;vertical-align:top;padding:.7rem;border-bottom:1px solid #d5deea}thead{background:#edf2f8}.scroll{overflow:auto;max-width:100%}.scroll:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #124c82;outline-offset:2px}summary{cursor:pointer;padding:.4rem 0}pre{white-space:pre-wrap;overflow-wrap:anywhere}code{overflow-wrap:anywhere}a{color:#124c82}
+@media(max-width:600px){body{padding:1rem .5rem}main{padding:1rem}}
+@media print{body{background:white;padding:0}main{border:0;padding:0}}
+</style>
+<main>
+<h1>Access policy decision walkthrough</h1>
+<p>Four synthetic requests evaluated by the real OPA review/delete rules through <code>contract/contract.rego</code>. A decision is a policy result, not proof that a caller authenticated the subject or enforced it in an application.</p>
+<div class="scroll" role="region" aria-label="Policy decision table" tabindex="0"><table><thead><tr><th scope="col">Request</th><th scope="col">Input</th><th scope="col">Decision</th><th scope="col">Why</th></tr></thead><tbody>
+<tr><th scope='row'>Customer review in the same tenant</th><td><code>examples/same-tenant-review.json</code><details><summary>View evaluated JSON</summary><pre>{
+  &quot;subject&quot;: {
+    &quot;role&quot;: &quot;customer&quot;,
+    &quot;reputation&quot;: 10,
+    &quot;tenant&quot;: &quot;tenant-a&quot;
+  },
+  &quot;resource&quot;: {
+    &quot;tenant&quot;: &quot;tenant-a&quot;
+  },
+  &quot;action&quot;: &quot;review&quot;
+}
+</pre></details></td><td><strong>Allow</strong></td><td>The tenant gate passes and the customer-review rule accepts numeric reputation 10.</td></tr>
+<tr><th scope='row'>Admin delete across tenants</th><td><code>examples/cross-tenant-admin-delete.json</code><details><summary>View evaluated JSON</summary><pre>{
+  &quot;subject&quot;: {
+    &quot;role&quot;: &quot;admin&quot;,
+    &quot;tenant&quot;: &quot;b&quot;
+  },
+  &quot;resource&quot;: {
+    &quot;tenant&quot;: &quot;a&quot;
+  },
+  &quot;action&quot;: &quot;delete&quot;
+}
+</pre></details></td><td><strong>Deny</strong></td><td>The tenant gate rejects different subject and resource tenants before delegation.</td></tr>
+<tr><th scope='row'>Admin delete without reputation</th><td><code>examples/admin-delete.json</code><details><summary>View evaluated JSON</summary><pre>{
+  &quot;subject&quot;: {
+    &quot;role&quot;: &quot;admin&quot;,
+    &quot;tenant&quot;: &quot;tenant-a&quot;
+  },
+  &quot;resource&quot;: {
+    &quot;tenant&quot;: &quot;tenant-a&quot;
+  },
+  &quot;action&quot;: &quot;delete&quot;
+}
+</pre></details></td><td><strong>Allow</strong></td><td>An omitted reputation is permitted for an admin; the role rule accepts admin.</td></tr>
+<tr><th scope='row'>Admin delete with string reputation</th><td><code>examples/admin-string-reputation.json</code><details><summary>View evaluated JSON</summary><pre>{
+  &quot;subject&quot;: {
+    &quot;role&quot;: &quot;admin&quot;,
+    &quot;reputation&quot;: &quot;100&quot;,
+    &quot;tenant&quot;: &quot;tenant-a&quot;
+  },
+  &quot;resource&quot;: {
+    &quot;tenant&quot;: &quot;tenant-a&quot;
+  },
+  &quot;action&quot;: &quot;delete&quot;
+}
+</pre></details></td><td><strong>Deny</strong></td><td>A supplied reputation must be numeric, even for an admin.</td></tr>
+</tbody></table></div>
+<p>OPA 0.67.0 Windows amd64, SHA-256 <code>98ac401e944f6bc9bbc29a91f699b3403ec6979ed94682e46fa5ec78a8230bf3</code>. The full policy suite passed 51 tests. <a href="decision-results.json">Inspect the exact machine-readable decisions</a>.</p>
+<p>The caller must supply trusted tenant, role and reputation attributes. Undefined, errored or nonboolean responses must never authorize an operation.</p>
+</main>
+</html>

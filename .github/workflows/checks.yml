@@ -1,0 +1,33 @@
+name: Access policy checks
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Run policies and compare committed examples
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $opa = Join-Path $env:RUNNER_TEMP 'opa.exe'
+          Invoke-WebRequest 'https://github.com/open-policy-agent/opa/releases/download/v0.67.0/opa_windows_amd64.exe' -OutFile $opa
+          $hash = (Get-FileHash $opa -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($hash -ne '98ac401e944f6bc9bbc29a91f699b3403ec6979ed94682e46fa5ec78a8230bf3') { throw 'OPA checksum mismatch' }
+
+          $output = Join-Path $env:RUNNER_TEMP 'access-policy-report'
+          if (Test-Path -LiteralPath $output) { throw 'Report output directory already exists' }
+          & ./tools/run-demo.ps1 -Opa $opa -OutputDirectory $output
+
+          $expectedJson = [System.Text.Json.Nodes.JsonNode]::Parse([IO.File]::ReadAllText('examples/decision-results.json'))
+          $actualJson = [System.Text.Json.Nodes.JsonNode]::Parse([IO.File]::ReadAllText((Join-Path $output 'decision-results.json')))
+          if (-not [System.Text.Json.Nodes.JsonNode]::DeepEquals($expectedJson, $actualJson)) { throw 'Committed decision JSON differs from the OPA run' }
+
+          $expectedHtml = [IO.File]::ReadAllText('examples/decision-matrix.html').Replace("`r`n", "`n")
+          $actualHtml = [IO.File]::ReadAllText((Join-Path $output 'decision-matrix.html')).Replace("`r`n", "`n")
+          if ($expectedHtml -cne $actualHtml) { throw 'Committed decision HTML differs from the OPA run' }
