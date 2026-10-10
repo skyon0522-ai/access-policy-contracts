@@ -11,13 +11,14 @@ A small Rego acceptance component for reviewing tenant-bound access decisions be
 
 The caller must authenticate identities and load trusted subject attributes and resource ownership. These fixtures do not authenticate users or enforce access in an application.
 
-## Contents
+## Start here
 
-- [Run the policies](#run-the-policies)
-- [Contract](#contract)
-- [Copied source](SOURCES.md)
-- [Observed verification](VERIFICATION.md)
-- [Research background](RESEARCH.md)
+| Need | Read |
+| --- | --- |
+| Run the assembled policy | [Commands and expected decisions](#run-the-policies) |
+| Inspect the authored gate and cases | [Contract](contract/contract.rego), [tests](contract/contract_test.rego), [example inputs](examples/) |
+| Identify the copied policies | [Source composition](SOURCES.md) and [provenance](source-provenance.json) |
+| Check observed results and limits | [Verification](VERIFICATION.md), [scope](#scope), and [research context](RESEARCH.md) |
 
 ## Run the policies
 
